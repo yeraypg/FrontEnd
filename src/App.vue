@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="rgb(106, 162, 236">
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -26,25 +22,21 @@
       </div>
 
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-main>
-      <router-view/>
+      <router-view />
     </v-main>
+    <v-spacer></v-spacer>
+    <v-footer padless>
+      <v-col color="primary" class="text-center" cols="12">
+        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+      </v-col>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-
 export default {
   name: 'App',
 

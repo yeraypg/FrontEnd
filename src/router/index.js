@@ -3,6 +3,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import MainView from '../views/MainView.vue'
+import SpotView from '../views/SpotView.vue'
+import FlopView from '../views/FlopView.vue'
+import ExampleView from '../views/ExampleView.vue'
+
 
 Vue.use(VueRouter)
 
@@ -16,7 +20,22 @@ const routes = [
         path: '/main',
         name: 'main',
         component: MainView
-    }
+    },
+    {
+        path: '/spot',
+        name: 'spot',
+        component: SpotView
+    },
+    {
+        path: '/flop',
+        name: 'flop',
+        component: FlopView
+    },
+    {
+        path: '/example',
+        name: 'example',
+        component: ExampleView
+    },
 ]
 
 const router = new VueRouter({

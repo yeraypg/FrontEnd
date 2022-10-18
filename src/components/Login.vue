@@ -16,7 +16,6 @@
           prepend-icon="mdi-lock"
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showPassword = !showPassword"
-          :rules="passwordRules"
         >
         </v-text-field>
       </v-form>
@@ -48,6 +47,7 @@ export default {
     sendLogin: async function () {
       const sendData = { email: this.email, password: this.password }
       const response = await login(sendData)
+      console.log(response)
       localStorage.token = response.token
       localStorage.email = response.email
       localStorage.rol = response.rol

@@ -25,7 +25,6 @@
 <script>
 export default {
   name: 'HeaderComponent',
-
   data: () => ({})
 }
 </script>

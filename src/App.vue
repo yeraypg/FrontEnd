@@ -1,47 +1,51 @@
 <template>
-  <v-app>
-    <v-app-bar app color="rgb(106, 162, 236">
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-    </v-app-bar>
-
+  <v-app class="background">
+    <HeaderComponent />
     <v-main>
       <router-view />
     </v-main>
-    <v-spacer></v-spacer>
-    <v-footer padless>
-      <v-col color="primary" class="text-center" cols="12">
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-      </v-col>
-    </v-footer>
+    <FooterComponent />
   </v-app>
 </template>
 
 <script>
+import HeaderComponent from './components/HeaderComponent.vue'
+import FooterComponent from './components/FooterComponent.vue'
 export default {
   name: 'App',
-
+  components: {
+    HeaderComponent,
+    FooterComponent
+  },
   data: () => ({
     //
   })
 }
 </script>
+
+<style scoped>
+.background {
+  width: 100vw;
+  height: 100%;
+  background: radial-gradient(
+      farthest-side at top left,
+      rgba(104, 164, 243, 0.5),
+      transparent
+    ),
+    radial-gradient(
+      farthest-side at top right,
+      rgba(140, 253, 109, 0.5),
+      transparent
+    ),
+    radial-gradient(
+      farthest-side at bottom left,
+      rgba(248, 132, 78, 0.5),
+      transparent
+    ),
+    radial-gradient(
+      farthest-corner at bottom right,
+      rgba(68, 68, 68, 0.5),
+      transparent
+    );
+}
+</style>

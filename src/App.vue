@@ -1,10 +1,10 @@
-<template class="background">
-  <v-app>
-    <HeaderComponent/>
+<template>
+  <v-app class="background">
+    <HeaderComponent />
     <v-main>
       <router-view />
     </v-main>
-    <FooterComponent/>
+    <FooterComponent />
   </v-app>
 </template>
 

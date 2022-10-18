@@ -1,14 +1,8 @@
 <template>
   <v-card>
-    <v-card-title class="title justify-center">SignUp</v-card-title>
+    <v-card-title class="title justify-center">Login</v-card-title>
     <v-card-text>
       <v-form>
-        <v-text-field
-          v-model="userName"
-          label="Username"
-          prepend-icon="mdi-lock"
-        >
-        </v-text-field>
         <v-text-field
           v-model="email"
           label="Email"
@@ -25,39 +19,28 @@
           :rules="passwordRules"
         >
         </v-text-field>
-        <v-text-field
-          v-model="checkPassword"
-          :type="showPassword ? 'text' : 'password'"
-          label="Password"
-          prepend-icon="mdi-lock"
-          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-          @click:append="showPassword = !showPassword"
-        >
-        </v-text-field>
       </v-form>
     </v-card-text>
     <v-card-actions class="justify-center">
-      <v-btn dark @click="changeLogin" class="ma-4">Go to Login</v-btn>
-      <v-btn color="primary" @click="SignUp" ma-4>SignUp</v-btn>
+      <v-btn dark @click="changeSignUp" class="ma-4">Go to SignUp</v-btn>
+      <v-btn color="primary" @click="login" ma-4>Login</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
 export default {
-  name: 'SignUp',
+  name: 'LoginComponent',
 
   data () {
     return {
       showPassword: false,
       password: '',
-      checkPassword: '',
-      email: '',
-      userName: ''
+      email: ''
     }
   },
   methods: {
-    changeLogin: function () {
+    changeSignUp: function () {
       this.$emit('changeComponent')
     }
   }

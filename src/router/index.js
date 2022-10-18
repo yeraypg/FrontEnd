@@ -15,7 +15,6 @@ const routes = [
     {
         path: '/main',
         name: 'main',
-
         component: MainView
     }
 ]

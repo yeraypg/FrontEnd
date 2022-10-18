@@ -6,23 +6,23 @@ import MainView from '../views/MainView.vue'
 Vue.use(VueRouter)
 
 const routes = [
-    {
-        path: '/',
-        name: 'home',
-        component: HomeView
-    },
-    {
-        path: '/main',
-        name: 'main',
+  {
+    path: '/',
+    name: 'home',
+    component: HomeView
+  },
+  {
+    path: '/main',
+    name: 'main',
 
-        component: MainView
-    }
+    component: MainView
+  }
 ]
 
 const router = new VueRouter({
-    mode: 'history',
-    base: process.env.BASE_URL,
-    routes
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
 })
 
 export default router

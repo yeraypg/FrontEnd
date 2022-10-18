@@ -38,12 +38,14 @@
     </v-card-text>
     <v-card-actions class="justify-center">
       <v-btn dark @click="changeLogin" class="ma-4">Go to Login</v-btn>
-      <v-btn color="primary" @click="SignUp" ma-4>SignUp</v-btn>
+      <v-btn color="primary" @click="sendSignUp" ma-4>SignUp</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import { signUp } from '../services/index.js'
+
 export default {
   name: 'SignUp',
 
@@ -59,6 +61,19 @@ export default {
   methods: {
     changeLogin: function () {
       this.$emit('changeComponent')
+    },
+    sendSignUp: async function () {
+      const sendData = {
+        name: this.userName,
+        email: this.email,
+        password: this.password
+      }
+      const response = await signUp(sendData)
+      localStorage.token = response.token
+      localStorage.email = response.email
+      localStorage.rol = response.rol
+      console.log(localStorage)
+      this.$router.push({ name: 'main' })
     }
   }
 }

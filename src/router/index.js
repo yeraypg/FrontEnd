@@ -7,17 +7,16 @@ import MainView from '../views/MainView.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/main',
-    name: 'main',
-
-    component: MainView
-  }
+    {
+        path: '/',
+        name: 'home',
+        component: HomeView
+    },
+    {
+        path: '/main',
+        name: 'main',
+        component: MainView
+    }
 ]
 
 const router = new VueRouter({

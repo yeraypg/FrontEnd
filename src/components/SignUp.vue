@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { signUp } from '../services/index.js'
+import { signUp } from '../services/userService.js'
 
 export default {
   name: 'SignUp',

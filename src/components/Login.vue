@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { login } from '../services/index'
+import { login } from '../services/userService'
 
 export default {
   name: 'LoginComponent',
@@ -51,7 +51,9 @@ export default {
       localStorage.token = response.token
       localStorage.email = response.email
       localStorage.rol = response.rol
+      localStorage.userId = response.userId
       console.log(localStorage)
+      console.log()
       this.$router.push({ name: 'main' })
     }
   }

@@ -2,37 +2,35 @@
   <v-container>
     <h1>SPOT PAGE</h1>
     <v-spacer></v-spacer>
-    <v-btn x-large color="success" dark @click="goMain"
-      >BACK TO MAIN VIEW
-    </v-btn>
-    <v-btn x-large color="success" dark @click="getAllSpots">getAllSpots</v-btn>
-    <SpotCardComponent v-for="spot in userSpots" :key="spot.id" />
+    <div>{{ spotData }}</div>
   </v-container>
 </template>
 
 <script>
-import SpotCardComponent from '../components/SpotCardComponent.vue'
-import { getAllSpots } from '../services/spotService'
+import { getOneSpot } from '../services/spotService'
 
 export default {
   name: 'SpotView',
   data () {
     return {
-      userSpots: []
+      spotData: {}
     }
   },
-  components: { SpotCardComponent },
+  components: {},
   methods: {
     goMain: function () {
       this.$router.push({ name: 'main' })
     },
-    getAllSpots: async function () {
-      const data = await getAllSpots(localStorage.userId)
-      this.userSpots = data
+    getOneSpot: async function () {
+      const data = await getOneSpot(localStorage.userId)
+      console.log(data)
     }
   },
+  props: {
+    spot: Object
+  },
   created () {
-    this.getAllSpots()
+    this.spotData = this.spot
   }
 }
 </script>

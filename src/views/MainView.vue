@@ -1,29 +1,40 @@
 <template>
   <v-container>
     <h1>MAIN PAGE</h1>
-    <v-spacer></v-spacer>
-    <v-btn x-large color="success" dark @click="goSpot">SPOT VIEW </v-btn>
-
-    <v-btn x-large color="success" dark @click="goFlop">FLOP VIEW </v-btn>
-
-    <v-btn x-large color="success" dark>EXAMPLE VIEW</v-btn>
+    <v-container class="cardRows">
+      <SpotCardComponent v-for="spot in userSpots" :key="spot.id" :spot="spot"/>
+    </v-container>
   </v-container>
 </template>
 
 <script>
+import SpotCardComponent from '../components/SpotCardComponent.vue'
+import { getAllSpots } from '../services/spotService'
+
 export default {
   name: 'MainView',
-  components: {},
-  methods: {
-    goSpot: function () {
-      this.$router.push({ name: 'spot' })
-    },
-    goFlop: function () {
-      this.$router.push({ name: 'flop' })
-    },
-    goExample: function () {
-      this.$router.push({ name: 'example' })
+  data () {
+    return {
+      userSpots: []
     }
+  },
+  components: { SpotCardComponent },
+  methods: {
+    goMain: function () {
+      this.$router.push({ name: 'main' })
+    },
+    getAllSpots: async function () {
+      const data = await getAllSpots(localStorage.userId)
+      this.userSpots = data
+    }
+  },
+  created () {
+    this.getAllSpots()
   }
 }
 </script>
+<style scoped>
+.cardRows{
+  display: flex;
+}
+</style>

@@ -9,6 +9,7 @@
         <SelectTypeSpotComponent @changeSelectFilter="chageSelectFilter" />
       </v-col>
     </v-row>
+
     <v-container class="cardRows">
       <SpotCardComponent
         v-for="spot in getFilteredSpots"
@@ -16,6 +17,9 @@
         :spot="spot"
       />
     </v-container>
+    <button-accept />
+    <button-cancel />
+    <slide-component />
   </v-container>
 </template>
 
@@ -23,6 +27,9 @@
 import SpotCardComponent from '../components/SpotCardComponent.vue'
 import { getAllSpots } from '../services/spotService'
 import SelectTypeSpotComponent from '../components/SelectTypeSpotComponent.vue'
+import ButtonAccept from '../components/ButtonAcceptComponent.vue'
+import ButtonCancel from '../components/ButtonCancelComponent.vue'
+import SlideComponent from '../components/SlideComponent.vue'
 
 export default {
   name: 'MainView',
@@ -32,7 +39,13 @@ export default {
       typeSelect: 'SRP'
     }
   },
-  components: { SpotCardComponent, SelectTypeSpotComponent },
+  components: {
+    SpotCardComponent,
+    SelectTypeSpotComponent,
+    ButtonAccept,
+    ButtonCancel,
+    SlideComponent
+  },
   methods: {
     goMain: function () {
       this.$router.push({ name: 'main' })

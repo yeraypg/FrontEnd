@@ -1,9 +1,5 @@
 <template>
-  <v-card elevation="2"
-  outlined
-  shaped
-  width="25vw"
-  >
+  <v-card elevation="2" outlined rounded width="25vw">
     <v-card-title>{{ spot.titleSpot }}</v-card-title>
     <ul>
       <li mx-4 v-for="flop in spot.flops" :key="flop._id">
@@ -14,7 +10,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'SpotCardComponent',
 
@@ -30,5 +25,4 @@ export default {
 }
 </script>
 <style scoped>
-
 </style>

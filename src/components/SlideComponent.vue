@@ -6,7 +6,6 @@
       circle
       prev-icon="mdi-menu-left"
       next-icon="mdi-menu-right"
-      :total-visible="7"
     ></v-pagination>
   </div>
 </template>

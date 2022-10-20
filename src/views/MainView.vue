@@ -11,15 +11,12 @@
     </v-row>
 
     <v-container class="cardRows">
-      <SpotCardComponent
-        v-for="spot in getFilteredSpots"
-        :key="spot.id"
-        :spot="spot"
-      />
+      <div v-for="spot in getFilteredSpots" :key="spot.id">
+        <SpotCardComponent @sendOneSpot="clickCard" :spot="spot" />
+      </div>
     </v-container>
     <button-accept />
     <button-cancel />
-    <slide-component />
   </v-container>
 </template>
 
@@ -29,7 +26,6 @@ import { getAllSpots } from '../services/spotService'
 import SelectTypeSpotComponent from '../components/SelectTypeSpotComponent.vue'
 import ButtonAccept from '../components/ButtonAcceptComponent.vue'
 import ButtonCancel from '../components/ButtonCancelComponent.vue'
-import SlideComponent from '../components/SlideComponent.vue'
 
 export default {
   name: 'MainView',
@@ -43,8 +39,7 @@ export default {
     SpotCardComponent,
     SelectTypeSpotComponent,
     ButtonAccept,
-    ButtonCancel,
-    SlideComponent
+    ButtonCancel
   },
   methods: {
     goMain: function () {
@@ -57,6 +52,9 @@ export default {
     chageSelectFilter: function (type) {
       console.log(type)
       this.typeSelect = type
+    },
+    clickCard: function (sendData) {
+      this.$router.push({ name: 'spot', params: { sendData } })
     }
   },
   computed: {
@@ -72,5 +70,6 @@ export default {
 <style scoped>
 .cardRows {
   display: flex;
+  justify-content: space-around;
 }
 </style>

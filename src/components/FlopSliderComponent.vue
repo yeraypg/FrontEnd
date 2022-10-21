@@ -5,6 +5,7 @@
     align-center
     center-active="true"
     max-width="80%"
+    next-icon="chevron-right-circle"
     color="transparent"
   >
     <v-slide-group multiple show-arrows>

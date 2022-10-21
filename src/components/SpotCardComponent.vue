@@ -4,8 +4,8 @@
     elevation="2"
     outlined
     rounded
-    width="20vw"
-    height="40vh"
+    width="15vw"
+    height="30vh"
   >
     <v-card-title>{{ spot.titleSpot }}</v-card-title>
     <ul>

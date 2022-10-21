@@ -1,22 +1,25 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="4">
-        <h1>MAIN PAGE</h1>
-      </v-col>
       <v-spacer></v-spacer>
       <v-col cols="4">
         <SelectTypeSpotComponent @changeSelectFilter="chageSelectFilter" />
       </v-col>
+      <v-spacer></v-spacer>
     </v-row>
-
+    <v-row>
     <v-container class="cardRows">
       <div v-for="spot in getFilteredSpots" :key="spot.id">
         <SpotCardComponent @sendOneSpot="clickCard" :spot="spot" />
       </div>
-    </v-container>
+    </v-container >
+  </v-row>
+  <v-row >
+    <v-container class="buttons">
     <button-accept />
     <button-cancel />
+  </v-container>
+  </v-row>
   </v-container>
 </template>
 
@@ -69,7 +72,13 @@ export default {
 </script>
 <style scoped>
 .cardRows {
+  height: 70vh;
   display: flex;
   justify-content: space-around;
+}
+.buttons {
+  display: flex;
+  justify-content: end;
+  align-content: end;
 }
 </style>

@@ -1,14 +1,14 @@
 <template>
   <v-container>
-    <v-container
-      ><h1>Spot: {{ spotData.titleSpot }}</h1></v-container
-    >
-    <h1>Type: {{ spotData.type }}</h1>
+    <v-row>
+     <h1>Spot: {{ spotData.titleSpot }}</h1>
+     <space-around></space-around>
+     <h1>Type: {{ spotData.type }}</h1>
+    </v-row>
     <v-divider></v-divider>
     <h1>Flops</h1>
     <FlopSliderComponent :flops="spotData.flops" />
-    <v-divider></v-divider>
-    <v-card elevation="6" height="75vh">
+    <v-card elevation="6" height="70vh">
       {{ spotData.text }}
     </v-card>
   </v-container>

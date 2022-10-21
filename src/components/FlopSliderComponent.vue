@@ -16,7 +16,7 @@
           active-class="success"
           depressed
           rounded
-          @click="clickFlop"
+          @click="clickFlop(flop)"
         >
           {{ flop.titleFlop }}
         </v-btn>
@@ -33,8 +33,9 @@ export default {
     flops: Array
   },
   methods: {
-    clickFlop: function () {
-      console.log('click')
+    clickFlop: function (flop) {
+      console.log(flop)
+      this.$emit('sendOneflop', flop)
     }
   }
 }

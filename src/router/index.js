@@ -30,11 +30,13 @@ const routes = [
     {
         path: '/flop',
         name: 'flop',
+        props: true,
         component: FlopView
     },
     {
         path: '/example',
         name: 'example',
+        props: true,
         component: ExampleView
     },
 ]

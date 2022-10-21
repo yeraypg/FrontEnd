@@ -1,6 +1,17 @@
 <template>
   <v-container>
-    <h1>FLOP PAGE</h1>
+    <h1>{{ flopData.titleFlop }}</h1>
+
+    <v-row>
+      <v-spacer></v-spacer>
+      <v-col cols="6">
+        <FlopCardText :flopData="flopData" />
+      </v-col>
+      <v-col cols="6">
+        <FlopCardImg />
+      </v-col>
+      <v-spacer></v-spacer>
+    </v-row>
     <v-row>
       <v-col cols="3">
         <v-btn x-large color="success" dark @click="goMain"
@@ -13,16 +24,6 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-row>
-      <v-spacer></v-spacer>
-      <v-col cols="6">
-        <FlopCardText />
-      </v-col>
-      <v-col cols="6">
-        <FlopCardImg />
-      </v-col>
-      <v-spacer></v-spacer>
-    </v-row>
   </v-container>
 </template>
 
@@ -33,6 +34,15 @@ import FlopCardText from '../components/FlopCardText.vue'
 export default {
   name: 'FlopView',
   components: { FlopCardImg, FlopCardText },
+  data () {
+    return {
+      flopData: {},
+      flopId: ''
+    }
+  },
+  props: {
+    sendData: Object
+  },
   methods: {
     goMain: function () {
       this.$router.push({ name: 'main' })
@@ -40,6 +50,10 @@ export default {
     goSpot: function () {
       this.$router.push({ name: 'spot' })
     }
+  },
+  created () {
+    this.flopData = this.sendData
+    this.flopId = this.sendData._id
   }
 }
 </script>

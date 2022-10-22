@@ -23,6 +23,11 @@
           >BACK TO SPOT VIEW
         </v-btn>
       </v-col>
+      <v-col cols="3">
+        <v-btn x-large color="success" dark @click="goExamples"
+          >EXAMPLES
+        </v-btn>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -49,6 +54,10 @@ export default {
     },
     goSpot: function () {
       this.$router.push({ name: 'spot' })
+    },
+    goExamples: function () {
+      const sendData = this.flopData
+      this.$router.push({ name: 'example', params: { sendData } })
     }
   },
   created () {

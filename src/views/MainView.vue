@@ -8,18 +8,18 @@
       <v-spacer></v-spacer>
     </v-row>
     <v-row>
-    <v-container class="cardRows">
-      <div v-for="spot in getFilteredSpots" :key="spot.id">
-        <SpotCardComponent @sendOneSpot="clickCard" :spot="spot" />
-      </div>
-    </v-container >
-  </v-row>
-  <v-row >
-    <v-container class="buttons">
-    <button-accept />
-    <button-cancel />
-  </v-container>
-  </v-row>
+      <v-container class="cardRows">
+        <div v-for="spot in getFilteredSpots" :key="spot.id">
+          <SpotCardComponent @sendOneSpot="clickCard" :spot="spot" />
+        </div>
+      </v-container>
+    </v-row>
+    <v-row>
+      <v-container class="buttons">
+        <button-accept />
+        <button-cancel />
+      </v-container>
+    </v-row>
   </v-container>
 </template>
 
@@ -53,7 +53,6 @@ export default {
       this.userSpots = data
     },
     chageSelectFilter: function (type) {
-      console.log(type)
       this.typeSelect = type
     },
     clickCard: function (sendData) {

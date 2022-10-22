@@ -9,16 +9,20 @@
     color="transparent"
   >
     <v-slide-group multiple show-arrows>
-      <v-slide-item v-for="flop in flops" :key="flop._id" v-slot="{ active }">
+      <v-slide-item
+        v-for="(example, index) in examplesData"
+        :key="example._id"
+        v-slot="{ active }"
+      >
         <v-btn
           class="mx-2"
           :input-value="active"
           active-class="success"
           depressed
           rounded
-          @click="clickFlop(flop)"
+          @click="clickExample(example)"
         >
-          {{ flop.titleFlop }}
+          {{ index + 1 }}
         </v-btn>
       </v-slide-item>
     </v-slide-group>
@@ -27,14 +31,14 @@
 
 <script>
 export default {
-  name: 'FlopSliderComponent',
+  name: 'ExampleSliderComponent',
   data: () => ({}),
   props: {
-    flops: Array
+    examplesData: Array
   },
   methods: {
-    clickFlop: function (flop) {
-      this.$emit('sendOneflop', flop)
+    clickExample: function (dataFromSlide) {
+      this.$emit('sendOneExample', dataFromSlide)
     }
   }
 }

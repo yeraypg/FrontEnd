@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { getOneSpot } from '../services/spotService'
 import FlopSliderComponent from '../components/FlopSliderComponent.vue'
 
 export default {
@@ -31,12 +30,7 @@ export default {
     goMain: function () {
       this.$router.push({ name: 'main' })
     },
-    getOneSpot: async function () {
-      const data = await getOneSpot(localStorage.userId)
-      console.log(data)
-    },
     clickFlop: function (sendData) {
-      console.log(sendData)
       this.$router.push({ name: 'flop', params: { sendData } })
     }
   },

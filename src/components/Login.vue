@@ -47,13 +47,10 @@ export default {
     sendLogin: async function () {
       const sendData = { email: this.email, password: this.password }
       const response = await login(sendData)
-      console.log(response)
       localStorage.token = response.token
       localStorage.email = response.email
       localStorage.rol = response.rol
       localStorage.userId = response.userId
-      console.log(localStorage)
-      console.log()
       this.$router.push({ name: 'main' })
     }
   }

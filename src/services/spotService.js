@@ -12,10 +12,10 @@ async function getAllSpots(id) {
 }
 
 async function getOneSpot(id) {
-    const response = await apiClient.get('spot/', {
+    const response = await apiClient.get('spot/' + id, {
         headers: {
             'token': localStorage.token
-        }, id
+        }
     })
     return response.data
 }

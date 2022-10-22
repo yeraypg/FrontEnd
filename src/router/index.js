@@ -6,6 +6,7 @@ import MainView from '../views/MainView.vue'
 import SpotView from '../views/SpotView.vue'
 import FlopView from '../views/FlopView.vue'
 import ExampleView from '../views/ExampleView.vue'
+import NewSpotView from '../views/NewSpotView.vue'
 
 
 Vue.use(VueRouter)
@@ -26,6 +27,12 @@ const routes = [
         name: 'spot',
         props: true,
         component: SpotView
+    },
+    {
+        path: '/newSpot',
+        name: 'newSpot',
+        props: true,
+        component: NewSpotView
     },
     {
         path: '/flop',

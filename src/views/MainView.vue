@@ -14,11 +14,8 @@
         </div>
       </v-container>
     </v-row>
-    <v-row>
-      <v-container class="buttons">
-        <button-accept />
-        <button-cancel />
-      </v-container>
+    <v-row class="buttons">
+      <button-add />
     </v-row>
   </v-container>
 </template>
@@ -27,8 +24,7 @@
 import SpotCardComponent from '../components/SpotCardComponent.vue'
 import { getAllSpots } from '../services/spotService'
 import SelectTypeSpotComponent from '../components/SelectTypeSpotComponent.vue'
-import ButtonAccept from '../components/ButtonAcceptComponent.vue'
-import ButtonCancel from '../components/ButtonCancelComponent.vue'
+import ButtonAdd from '../components/ButtonAddComponent.vue'
 
 export default {
   name: 'MainView',
@@ -41,12 +37,11 @@ export default {
   components: {
     SpotCardComponent,
     SelectTypeSpotComponent,
-    ButtonAccept,
-    ButtonCancel
+    ButtonAdd
   },
   methods: {
-    goMain: function () {
-      this.$router.push({ name: 'main' })
+    goAddSpot: function () {
+      this.$router.push({ name: 'newSpot' })
     },
     getAllSpots: async function () {
       const data = await getAllSpots(localStorage.userId)
@@ -77,7 +72,8 @@ export default {
 }
 .buttons {
   display: flex;
-  justify-content: end;
-  align-content: end;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
 </style>

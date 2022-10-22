@@ -28,8 +28,7 @@ export default {
     goSpot: function () {
       this.$router.push({ name: 'spot' })
     },
-    sendOneSpot: function (spotId) {
-      const sendData = { spotId: spotId, spotData: this.spot }
+    sendOneSpot: function (sendData) {
       this.$emit('sendOneSpot', sendData)
     }
   }

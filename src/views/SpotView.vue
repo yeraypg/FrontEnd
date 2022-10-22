@@ -16,13 +16,13 @@
 
 <script>
 import FlopSliderComponent from '../components/FlopSliderComponent.vue'
+import { getOneSpot } from '../services/spotService'
 
 export default {
   name: 'SpotView',
   data () {
     return {
-      spotData: {},
-      spotId: ''
+      spotData: {}
     }
   },
   components: { FlopSliderComponent },
@@ -32,14 +32,17 @@ export default {
     },
     clickFlop: function (sendData) {
       this.$router.push({ name: 'flop', params: { sendData } })
+    },
+    getOneSpot: async function () {
+      const response = await getOneSpot(this.sendData)
+      this.spotData = response
     }
   },
   props: {
-    sendData: Object
+    sendData: String
   },
   created () {
-    this.spotData = this.sendData.spotData
-    this.spotId = this.sendData.spotId
+    this.getOneSpot()
   }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
-  <v-card raised rounded color="transparent" class="card">
+  <v-card raised elevation="6" rounded color="transparent" class="card">
+    <v-card-title font-weight-black>Selecciona Spot</v-card-title>
     <v-radio-group
       v-model="selected"
       mandatory

@@ -2,15 +2,18 @@
 
 import apiClient from './index'
 
-async function getAllExample(data) {
+async function getAllExamples(data) {
     const response = await apiClient.get('example/', {
         headers: {
-            'token': localStorage.token
+            'token': localStorage.token,
+            'spotid': data.spot,
+            'flopid': data._id
         }, data
     })
+    console.log(response.data)
     return response.data
 }
 
 export {
-    getAllExample
+    getAllExamples
 }

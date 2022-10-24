@@ -47,6 +47,7 @@ const routes = [
         props: true,
         component: NewFlopView
     },
+
     {
         path: '/example',
         name: 'example',

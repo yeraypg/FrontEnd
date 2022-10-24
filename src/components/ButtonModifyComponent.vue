@@ -1,5 +1,5 @@
 <template>
-  <v-btn color="success" dark large>
+  <v-btn @click="goEdit" color="success" dark large>
     Editar <v-icon dark right> mdi-pencil </v-icon></v-btn
   >
 </template>
@@ -7,7 +7,12 @@
 export default {
   name: 'ButtonModifyComponent',
 
-  data: () => ({})
+  data: () => ({}),
+  methods: {
+    goEdit () {
+      this.$emit('modify')
+    }
+  }
 }
 </script>
 <style scoped>

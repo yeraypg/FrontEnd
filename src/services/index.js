@@ -3,7 +3,7 @@
 import axios from 'axios'
 
 export default axios.create({
-    baseURL: 'http://localhost:5050/api/',
+    baseURL: 'https://postflopmanager.herokuapp.com/api/',
     withCredentials: false,
     headers: {
         Accept: 'application/json',

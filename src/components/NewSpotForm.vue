@@ -3,7 +3,7 @@
     <v-card elevation="6">
       <v-form width="70vw" ref="form" v-model="valid" lazy-validation>
         <v-text-field
-          v-model="title"
+          v-model="titleSpot"
           :counter="6"
           :rules="titleRules"
           label="Título"
@@ -43,14 +43,6 @@
         </v-textarea>
 
         <v-file-input
-          :rules="imgRules"
-          accept="image/png, image/jpeg, image/bmp"
-          placeholder="Pick an image"
-          prepend-icon="mdi-cloud-upload"
-          label="Imagen"
-        ></v-file-input>
-
-        <v-file-input
           :rules="audRules"
           accept="audio/ogg, audio/mpeg"
           placeholder="Pick an audio"
@@ -78,7 +70,7 @@ export default {
   data: () => ({
     valid: true,
     author: localStorage.userId,
-    title: '',
+    titleSpot: '',
     theory: '',
     exploit: '',
     titleRules: [
@@ -86,17 +78,12 @@ export default {
       (v) => (v && v.length >= 6) || 'Title must be greater than 6 characters'
     ],
     select: '',
-    image: '',
     audio: '',
     audRules: [
       (value) =>
         !value ||
         value.size < 15000000 ||
         'Image size should be less than 15 MB!'
-    ],
-    imgRules: [
-      (value) =>
-        !value || value.size < 2000000 || 'Image size should be less than 2 MB!'
     ],
     types: ['SRP', '3BET', '4BET']
   }),
@@ -107,6 +94,21 @@ export default {
     },
     reset () {
       this.$refs.form.reset()
+    },
+    fillForm: function () {
+      this.titleSpot = this.spot.titleSpot
+      this.type = this.spot.type
+      this.exploit = this.spot.exploit
+      this.theory = this.spot.theory
+      this.audio = this.spot.audio
+    }
+  },
+  props: {
+    spot: Object
+  },
+  created () {
+    if (this.spot !== undefined) {
+      this.fillForm()
     }
   }
 }

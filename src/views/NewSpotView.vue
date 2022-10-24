@@ -3,9 +3,7 @@
     <v-row>
       <h1>NewSpot</h1>
     </v-row>
-    <v-row>
-      <NewSpotForm />
-    </v-row>
+    <v-row> <NewSpotForm /> </v-row>
     <v-spacer></v-spacer>
     <v-row><ButtonVolver justify-end align-end @getBack="goMain" /></v-row>
   </v-container>
@@ -18,7 +16,8 @@ export default {
   name: 'NewSpotView',
   data () {
     return {
-      newSpot: {}
+      newSpot: {},
+      sendData: {}
     }
   },
   components: { ButtonVolver, NewSpotForm },

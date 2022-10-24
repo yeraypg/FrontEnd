@@ -4,6 +4,8 @@
       :examplesData="examplesData"
       @sendOneExample="getExample"
     />
+    <ExampleCardText />
+    <ExampleCardImg />
     <h1>{{ example.text }}</h1>
     <h1>{{ example._id }}</h1>
     <ButtonVolver @getBack="goFlop" />
@@ -14,6 +16,8 @@
 import ExampleSliderComponent from '../components/ExampleSliderComponent.vue'
 import { getAllExamples } from '../services/exampleService'
 import ButtonVolver from '../components/ButtonVolverComponent.vue'
+import ExampleCardText from '../components/ExampleCardText.vue'
+import ExampleCardImg from '../components/ExampleCardImg.vue'
 export default {
   name: 'ExampleView',
   data () {
@@ -24,7 +28,7 @@ export default {
       example: {}
     }
   },
-  components: { ExampleSliderComponent, ButtonVolver },
+  components: { ExampleSliderComponent, ButtonVolver, ExampleCardText, ExampleCardImg },
   props: {
     sendData: Object
   },

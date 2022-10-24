@@ -15,7 +15,7 @@
       </v-container>
     </v-row>
     <v-row class="buttons">
-      <button-add />
+      <button-add @addNew="goAddSpot" />
     </v-row>
   </v-container>
 </template>
@@ -50,7 +50,8 @@ export default {
     chageSelectFilter: function (type) {
       this.typeSelect = type
     },
-    clickCard: function (sendData) {
+    clickCard: function (spot) {
+      const sendData = { spotId: spot._id, flopId: '', exampleId: '' }
       this.$router.push({ name: 'spot', params: { sendData } })
     }
   },

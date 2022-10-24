@@ -6,6 +6,7 @@
     />
     <h1>{{ example.text }}</h1>
     <h1>{{ example._id }}</h1>
+    <ButtonAdd @addNew="goAddExample" />
     <ButtonVolver @getBack="goFlop" />
   </div>
 </template>
@@ -14,6 +15,7 @@
 import ExampleSliderComponent from '../components/ExampleSliderComponent.vue'
 import { getAllExamples } from '../services/exampleService'
 import ButtonVolver from '../components/ButtonVolverComponent.vue'
+import ButtonAdd from '../components/ButtonAddComponent.vue'
 export default {
   name: 'ExampleView',
   data () {
@@ -24,7 +26,7 @@ export default {
       example: {}
     }
   },
-  components: { ExampleSliderComponent, ButtonVolver },
+  components: { ExampleSliderComponent, ButtonVolver, ButtonAdd },
   props: {
     sendData: Object
   },
@@ -32,14 +34,16 @@ export default {
     getExample: function (dataFromSlide) {
       this.example = dataFromSlide
     },
+    goAddExample: function () {
+      const sendData = this.sendData
+      this.$router.push({ name: 'newExample', params: { sendData } })
+    },
     getAllExamples: async function () {
       const response = await getAllExamples(this.sendData)
       this.examplesData = response
     },
     goFlop: function () {
-      console.log('click')
       const sendData = this.sendData
-      console.log(sendData)
       this.$router.push({ name: 'flop', params: { sendData } })
     }
   },

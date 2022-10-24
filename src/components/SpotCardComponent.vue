@@ -1,6 +1,6 @@
 <template>
   <v-card
-    @click="sendOneSpot(spot._id)"
+    @click="sendOneSpot(spot)"
     elevation="2"
     outlined
     rounded

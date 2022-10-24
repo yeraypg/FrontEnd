@@ -7,16 +7,16 @@ async function getAllFlops(spotId) {
         headers: {
             'token': localStorage.token,
             'spotid': spotId
-        }, data
+        }
     })
     return response.data
 }
 
 async function getOneFlop(data) {
-    const response = await apiClient.get('flop/' + data._id, {
+    const response = await apiClient.get('flop/' + data.flopId, {
         headers: {
             'token': localStorage.token,
-            'spotid': data.spot
+            'spotid': data.spotId
         }
     })
     return response.data

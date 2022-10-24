@@ -6,11 +6,10 @@ async function getAllExamples(data) {
     const response = await apiClient.get('example/', {
         headers: {
             'token': localStorage.token,
-            'spotid': data.spot,
-            'flopid': data._id
+            'spotid': data.spotId,
+            'flopid': data.flopId
         }, data
     })
-    console.log(response.data)
     return response.data
 }
 

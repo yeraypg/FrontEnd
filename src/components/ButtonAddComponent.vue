@@ -1,5 +1,5 @@
 <template>
-  <v-btn class="mx-2" fab dark color="success">
+  <v-btn @click="goNew" class="mx-2" fab dark color="success">
     <v-icon dark> mdi-plus </v-icon>
   </v-btn>
 </template>
@@ -7,7 +7,12 @@
 export default {
   name: 'ButtonAddComponent',
 
-  data: () => ({})
+  data: () => ({}),
+  methods: {
+    goNew () {
+      this.$emit('addNew')
+    }
+  }
 }
 </script>
 <style scoped>

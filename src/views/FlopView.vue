@@ -18,7 +18,7 @@
         </v-btn>
       </v-col>
       <v-col cols="3">
-        <v-btn x-large color="success" dark @click="goSpot(sendData.spot)"
+        <v-btn x-large color="success" dark @click="goSpot(sendData)"
           >BACK TO SPOT VIEW
         </v-btn>
       </v-col>
@@ -55,7 +55,7 @@ export default {
       this.$router.push({ name: 'spot', params: { sendData } })
     },
     goExamples: function () {
-      const sendData = this.flopData
+      const sendData = this.sendData
       this.$router.push({ name: 'example', params: { sendData } })
     },
     getOneFlop: async function () {

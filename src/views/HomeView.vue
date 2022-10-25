@@ -8,7 +8,7 @@
           class="imgLogin"
           width="100%"
           height="100%"
-          src="../assets/logform.png"
+          src="../assets/logo.png"
         >
         </v-img>
       </v-col>

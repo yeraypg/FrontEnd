@@ -74,6 +74,7 @@ export default {
   },
   data () {
     return {
+      spotData: {},
       flopData: {},
       editMode: 'show',
       mode: ''

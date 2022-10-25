@@ -84,7 +84,7 @@ export default {
 </script>
 <style scoped>
 .cardRows {
-  height: 70vh;
+  height: 55vh;
   display: flex;
   justify-content: space-around;
 }

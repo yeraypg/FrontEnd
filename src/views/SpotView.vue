@@ -3,29 +3,36 @@
     <transition name="fade">
       <v-container v-if="editMode == 'show'">
         <v-row>
-          <v-container>
-            <h1>Spot: {{ spotData.titleSpot }}</h1>
-            <v-spacer></v-spacer>
-            <h1>Type: {{ spotData.type }}</h1></v-container
-          >
+          <v-col cols="2">
+            <v-card-title>Spot: {{ spotData.titleSpot }}</v-card-title>
+          </v-col>
+          <v-col cols="8" align-self="center"
+            ><FlopSliderComponent
+              :flops="spotData.flops"
+              @sendOneflop="clickFlop"
+          /></v-col>
+          <v-col cols="2"
+            ><v-card-title>Type: {{ spotData.type }}</v-card-title>
+          </v-col>
         </v-row>
-        <v-row
-          ><h1>Flops</h1>
-          <FlopSliderComponent :flops="spotData.flops" @sendOneflop="clickFlop"
-        /></v-row>
         <v-row>
-          <v-card elevation="6" height="70vh">
-            <v-card-text class="text-wrap">
-              Solución teórica: {{ spotData.theory }}
-            </v-card-text>
-            <v-card-text> explotación:{{ spotData.exploit }}</v-card-text>
+          <v-card elevation="6" height="60vh">
+            <v-card-title font-weight-medium>Solución Teórica</v-card-title>
+            <v-card-text> {{ spotData.theory }} </v-card-text>
+            <v-card-title font-weight-medium>Explotación</v-card-title>
+            <v-card-text> {{ spotData.exploit }}</v-card-text>
           </v-card></v-row
         >
         <v-row class="buttons">
-          <ButtonAdd @addNew="modeAdd" />
-          <ButtonModify @modify="modeEdit" />
-          <ButtonDelete @delOne="delSpot" />
-          <ButtonVolver @getBack="goMain" />
+          <v-spacer></v-spacer>
+          <v-col cols="2" class="d-flex justify-center"
+            ><ButtonAdd @addNew="modeAdd"
+          /></v-col>
+          <v-col cols="5" class="d-flex justify-end"
+            ><ButtonModify @modify="modeEdit" />
+            <ButtonDelete @delOne="delSpot" />
+            <ButtonVolver @getBack="goMain"
+          /></v-col>
         </v-row>
       </v-container>
     </transition>
@@ -112,6 +119,7 @@ export default {
 <style scoped>
 .form * {
   margin: 20px;
+  padding: 5px;
 }
 
 .fade-enter-active,
@@ -123,5 +131,10 @@ export default {
 .fade-enter,
 .fade-leave {
   opacity: 0;
+}
+
+.v-card {
+  margin-bottom: 10px;
+  overflow: auto;
 }
 </style>

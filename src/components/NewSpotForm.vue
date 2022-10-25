@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card elevation="6">
-      <v-form width="70vw" ref="form" v-model="valid" lazy-validation>
+      <v-form width="40vw" ref="form" v-model="valid" lazy-validation>
         <v-text-field
           v-model="titleSpot"
           :counter="6"
@@ -23,7 +23,7 @@
           full-width
           no-resize
           prepend-icon="mdi-comment"
-          height="20vh"
+          height="5vh"
           label="Solución teórica"
           v-model="theory"
           color="teal"
@@ -36,13 +36,14 @@
           full-width
           no-resize
           prepend-icon="mdi-comment"
-          height="20vh"
+          height="5vh"
           v-model="exploit"
           color="teal"
         >
         </v-textarea>
 
         <v-file-input
+          disabled
           v-model="file"
           :rules="audRules"
           accept="audio/ogg, audio/mpeg"

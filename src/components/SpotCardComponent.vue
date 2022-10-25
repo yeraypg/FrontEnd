@@ -1,13 +1,13 @@
 <template>
   <v-card
     @click="sendOneSpot(spot)"
-    elevation="2"
+    elevation="10"
     outlined
     rounded
     width="15vw"
-    height="30vh"
+    height="25vh"
   >
-    <v-card-title>{{ spot.titleSpot }}</v-card-title>
+    <v-card-title class="center">{{ spot.titleSpot }}</v-card-title>
     <ul>
       <li mx-4 v-for="flop in spot.flops" :key="flop._id">
         {{ flop.titleFlop }}
@@ -35,4 +35,7 @@ export default {
 }
 </script>
 <style scoped>
+.v-card {
+  overflow: auto;
+}
 </style>

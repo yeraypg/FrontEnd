@@ -4,7 +4,7 @@
     justify-center
     align-center
     center-active="true"
-    max-width="50%"
+    max-width="80%"
     color="transparent"
   >
     <v-slide-group multiple show-arrows>

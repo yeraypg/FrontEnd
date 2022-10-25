@@ -15,7 +15,9 @@
         /></v-row>
         <v-row>
           <v-card elevation="6" height="70vh">
-            <v-card-text> Solución teórica: {{ spotData.theory }} </v-card-text>
+            <v-card-text class="text-wrap">
+              Solución teórica: {{ spotData.theory }}
+            </v-card-text>
             <v-card-text> explotación:{{ spotData.exploit }}</v-card-text>
           </v-card></v-row
         >

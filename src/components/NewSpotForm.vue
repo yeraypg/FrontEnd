@@ -43,6 +43,7 @@
         </v-textarea>
 
         <v-file-input
+          v-model="file"
           :rules="audRules"
           accept="audio/ogg, audio/mpeg"
           placeholder="Pick an audio"
@@ -88,7 +89,8 @@ export default {
         value.size < 15000000 ||
         'Image size should be less than 15 MB!'
     ],
-    types: ['SRP', '3BET', '4BET']
+    types: ['SRP', '3BET', '4BET'],
+    file: null
   }),
 
   methods: {
@@ -113,6 +115,7 @@ export default {
           type: this.select,
           audio: this.audio
         }
+        console.log(spot)
         createSpot(spot)
         this.$emit('goModeShow')
       }
@@ -131,6 +134,7 @@ export default {
       this.$emit('goModeShow')
     }
   },
+
   props: {
     spot: Object,
     mode: String

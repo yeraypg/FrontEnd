@@ -1,25 +1,49 @@
 <template>
-  <div>
-    <ExampleSliderComponent
-      :examplesData="examplesData"
-      @sendOneExample="getExample"
-    />
-    <ExampleCardText />
-    <ExampleCardImg />
-    <h1>{{ example.text }}</h1>
-    <h1>{{ example._id }}</h1>
-    <ButtonAdd @addNew="goAddExample" />
-    <ButtonVolver @getBack="goFlop" />
-  </div>
+  <v-container>
+    <transition name="fade">
+      <v-container v-if="editMode == 'show'">
+        <v-row>
+          <ExampleSliderComponent
+            :examplesData="examplesData"
+            @sendOneExample="getExample"
+          />
+        </v-row>
+        <v-row>
+          <ExampleCardImg :example="example" />
+          <ExampleCardText :text="example.text" />
+        </v-row>
+        <v-row>
+          <v-col cols="8"><ButtonAdd @addNew="modeAdd" /></v-col>
+          <v-col cols="4"
+            ><ButtonVolver @getBack="goFlop" />
+            <ButtonModify @modify="modeEdit"
+          /></v-col>
+        </v-row>
+      </v-container>
+    </transition>
+    <transition name="fade">
+      <v-container v-if="editMode == 'add'">
+        <ExampleForm :mode="mode" :sendData="sendData" @goModeShow="modeShow" />
+      </v-container>
+    </transition>
+    <transition name="fade">
+      <v-container v-if="editMode == 'edit'">
+        <ExampleForm :mode="mode" :example="example" @goModeShow="modeShow" />
+      </v-container>
+    </transition>
+  </v-container>
 </template>
 
 <script>
 import ExampleSliderComponent from '../components/ExampleSliderComponent.vue'
 import { getAllExamples } from '../services/exampleService'
 import ButtonVolver from '../components/ButtonVolverComponent.vue'
+import ButtonModify from '../components/ButtonModifyComponent.vue'
 import ButtonAdd from '../components/ButtonAddComponent.vue'
 import ExampleCardText from '../components/ExampleCardText.vue'
 import ExampleCardImg from '../components/ExampleCardImg.vue'
+import ExampleForm from '../components/NewExampleForm.vue'
+
 export default {
   name: 'ExampleView',
   data () {
@@ -27,10 +51,20 @@ export default {
       examplesData: [],
       flopId: '',
       spotId: '',
-      example: {}
+      example: {},
+      editMode: 'show',
+      mode: ''
     }
   },
-  components: { ExampleSliderComponent, ButtonVolver, ButtonAdd, ExampleCardText, ExampleCardImg },
+  components: {
+    ExampleSliderComponent,
+    ButtonVolver,
+    ButtonAdd,
+    ButtonModify,
+    ExampleCardText,
+    ExampleCardImg,
+    ExampleForm
+  },
   props: {
     sendData: Object
   },
@@ -45,10 +79,24 @@ export default {
     getAllExamples: async function () {
       const response = await getAllExamples(this.sendData)
       this.examplesData = response
+      if (this.examplesData.length) {
+        this.example = this.examplesData[0]
+      }
     },
     goFlop: function () {
       const sendData = this.sendData
       this.$router.push({ name: 'flop', params: { sendData } })
+    },
+    modeAdd: function () {
+      this.editMode = 'add'
+      this.mode = 'create'
+    },
+    modeShow: function () {
+      this.editMode = 'show'
+    },
+    modeEdit: function () {
+      this.editMode = 'edit'
+      this.mode = 'edit'
     }
   },
   created () {
@@ -56,3 +104,15 @@ export default {
   }
 }
 </script>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.fade-enter,
+.fade-leave {
+  opacity: 0;
+}
+</style>

@@ -67,11 +67,14 @@
         </v-btn>
 
         <v-btn color="error" class="mr-4" @click="reset"> Resetear Spot </v-btn>
+        <v-btn color="primary" class="mr-4" @click="back"> Cancel </v-btn>
       </v-form>
     </v-card>
   </v-container>
 </template>
 <script>
+import { updateOneFlop, createFlop } from '../services/flopService'
+
 export default {
   name: 'NewFlopForm',
   data: () => ({
@@ -103,10 +106,55 @@ export default {
 
   methods: {
     validate () {
-      this.$refs.form.validate()
+      if (this.mode === 'edit') {
+        const flop = {
+          spot: this.spotId,
+          id: this.flop._id,
+          titleFlop: this.titleFlop,
+          theory: this.theory,
+          exploit: this.exploit,
+          audio: this.audio,
+          image: this.image
+        }
+        updateOneFlop(flop)
+        this.$emit('goModeShow')
+      }
+      if (this.mode === 'create') {
+        const spot = {
+          spot: this.spotId,
+          titleFlop: this.titleFlop,
+          theory: this.theory,
+          exploit: this.exploit,
+          audio: this.audio,
+          image: this.image
+        }
+        createFlop(spot)
+        this.$emit('goModeShow')
+      }
     },
     reset () {
       this.$refs.form.reset()
+    },
+    back () {
+      this.$emit('goModeShow')
+    },
+    fillForm: function () {
+      this.titleFlop = this.flop.titleFlop
+      this.author = this.flop.author
+      this.exploit = this.flop.exploit
+      this.theory = this.flop.theory
+      this.audio = this.flop.audio
+      this.image = this.flop.image
+    }
+  },
+  props: {
+    flop: Object,
+    mode: String,
+    spotId: String
+  },
+  created () {
+    if (this.flop !== undefined) {
+      this.fillForm()
     }
   }
 }

@@ -2,7 +2,9 @@
   <v-app class="background">
     <HeaderComponent />
     <v-main>
-      <router-view />
+      <transition name="fade">
+        <router-view />
+      </transition>
     </v-main>
     <FooterComponent />
   </v-app>
@@ -47,5 +49,16 @@ export default {
       rgba(68, 68, 68, 0.5),
       transparent
     );
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.fade-enter,
+.fade-leave {
+  opacity: 0;
 }
 </style>

@@ -22,8 +22,35 @@ async function getOneFlop(data) {
     return response.data
 }
 
+async function updateOneFlop(data) {
+    const response = await apiClient.patch('flop/' + data.id, data, {
+        headers: {
+            'token': localStorage.token
+        }
+    })
+}
+
+async function createFlop(data) {
+    const response = await apiClient.post('flop/', data, {
+        headers: {
+            'token': localStorage.token
+        }
+    })
+}
+
+async function deleteFlop(data) {
+    const response = await apiClient.patch('flop/delete/' + data.flopId, { spot: data.spotId }, {
+        headers: {
+            'token': localStorage.token
+        }
+    })
+}
+
 
 export {
     getAllFlops,
-    getOneFlop
+    getOneFlop,
+    updateOneFlop,
+    createFlop,
+    deleteFlop
 }

@@ -1,34 +1,53 @@
 <template>
   <v-container>
-    <h1>{{ flopData.titleFlop }}</h1>
-    <v-row>
-      <v-spacer></v-spacer>
-      <v-col cols="6">
-        <FlopCardText :flopData="flopData" />
-      </v-col>
-      <v-col cols="6">
-        <FlopCardImg />
-      </v-col>
-      <v-spacer></v-spacer>
-    </v-row>
-    <v-row>
-      <v-col cols="1">
-        <v-btn x-large color="success" dark @click="goExamples"
-          >EXAMPLES
-        </v-btn>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-spacer></v-spacer>
-      <v-col cols="2">
-        <v-btn x-large color="success" dark @click="goMain"
-          >BACK TO MAIN VIEW
-        </v-btn>
-      </v-col>
-      <v-col cols="1">
-        <ButtonVolver @getBack="goSpot(sendData.spot)" />
-      </v-col>
-    </v-row>
+    <transition name="fade">
+      <v-container v-if="editMode == 'show'">
+        <h1>{{ flopData.titleFlop }}</h1>
+        <v-row>
+          <v-spacer></v-spacer>
+          <v-col cols="6">
+            <FlopCardText :flopData="flopData" />
+          </v-col>
+          <v-col cols="6">
+            <FlopCardImg :flopData="flopData" />
+          </v-col>
+          <v-spacer></v-spacer>
+        </v-row>
+        <v-row>
+          <v-col cols="4">
+            <v-btn large color="success" dark @click="goExamples"
+              >Ejemplos
+            </v-btn>
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col cols="4"> <ButtonAdd @addNew="modeAdd" /> </v-col>
+          <v-col cols="4">
+            <ButtonModify @modify="modeEdit" />
+            <ButtonDelete @delOne="delFlop" />
+            <ButtonVolver @getBack="goSpot(sendData.spot)" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </transition>
+    <transition name="fade">
+      <v-container v-if="editMode == 'add'">
+        <FormFlop
+          :mode="mode"
+          :spotId="sendData.spotId"
+          @goModeShow="modeShow"
+        />
+      </v-container>
+    </transition>
+    <transition name="fade">
+      <v-container v-if="editMode == 'edit'">
+        <FormFlop
+          :mode="mode"
+          :flop="flopData"
+          :spotId="sendData.spotId"
+          @goModeShow="modeShow"
+        />
+      </v-container>
+    </transition>
   </v-container>
 </template>
 
@@ -36,14 +55,28 @@
 import FlopCardImg from '../components/FlopCardImg.vue'
 import FlopCardText from '../components/FlopCardText.vue'
 import ButtonVolver from '../components/ButtonVolverComponent.vue'
-import { getOneFlop } from '../services/flopService.js'
+import ButtonAdd from '../components/ButtonAddComponent.vue'
+import { getOneFlop, deleteFlop } from '../services/flopService.js'
+import FormFlop from '../components/NewFlopForm.vue'
+import ButtonModify from '../components/ButtonModifyComponent.vue'
+import ButtonDelete from '../components/ButtonDeleteComponent.vue'
 
 export default {
   name: 'FlopView',
-  components: { FlopCardImg, FlopCardText, ButtonVolver },
+  components: {
+    FlopCardImg,
+    FlopCardText,
+    ButtonVolver,
+    ButtonModify,
+    ButtonAdd,
+    FormFlop,
+    ButtonDelete
+  },
   data () {
     return {
-      flopData: {}
+      flopData: {},
+      editMode: 'show',
+      mode: ''
     }
   },
   props: {
@@ -53,22 +86,32 @@ export default {
     goMain: function () {
       this.$router.push({ name: 'main' })
     },
-    /* goSpot: function (sendData) {
-      this.$router.push({ name: 'spot', params: { sendData } })
-    }, */
     goExamples: function () {
       const sendData = this.sendData
       this.$router.push({ name: 'example', params: { sendData } })
     },
     goSpot: function () {
-      console.log('click')
       const sendData = this.sendData
-      console.log(sendData)
       this.$router.push({ name: 'spot', params: { sendData } })
     },
     getOneFlop: async function () {
       const response = await getOneFlop(this.sendData)
       this.flopData = response
+    },
+    modeAdd: function () {
+      this.editMode = 'add'
+      this.mode = 'create'
+    },
+    modeShow: function () {
+      this.editMode = 'show'
+    },
+    modeEdit: function () {
+      this.editMode = 'edit'
+      this.mode = 'edit'
+    },
+    delFlop: async function () {
+      await deleteFlop(this.sendData)
+      this.goSpot()
     }
   },
   created () {
@@ -76,3 +119,15 @@ export default {
   }
 }
 </script>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.fade-enter,
+.fade-leave {
+  opacity: 0;
+}
+</style>

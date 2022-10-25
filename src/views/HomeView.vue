@@ -13,7 +13,7 @@
         </v-img>
       </v-col>
       <v-col cols="4" class="pl-8">
-        <transition name="component-fade" mode="out-in">
+        <transition name="fade" mode="out-in">
           <component @changeComponent="changeComponent" :is="state"></component>
         </transition>
       </v-col>
@@ -60,15 +60,14 @@ export default {
   height: 60vh;
 }
 
-.component-fade-enter-active,
-.component-fade-leave-active {
-  transition: opacity 0.4s ease;
+.fade-enter-active,
+.fade-leave-active {
+  opacity: 1;
+  transition: all 0.5s ease;
 }
-.component-fade-enter {
-  opacity: 0;
-}
-.component-fade-leave-to
-/* .component-fade-leave-active below version 2.1.8 */ {
+
+.fade-enter,
+.fade-leave {
   opacity: 0;
 }
 </style>

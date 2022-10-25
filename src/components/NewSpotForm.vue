@@ -60,11 +60,14 @@
         </v-btn>
 
         <v-btn color="error" class="mr-4" @click="reset"> Resetear Spot </v-btn>
+        <v-btn color="primary" class="mr-4" @click="back"> Cancelar </v-btn>
       </v-form>
     </v-card>
   </v-container>
 </template>
 <script>
+import { updateOneSpot, createSpot } from '../services/spotService'
+
 export default {
   name: 'NewSpotForm',
   data: () => ({
@@ -90,7 +93,29 @@ export default {
 
   methods: {
     validate () {
-      this.$refs.form.validate()
+      if (this.mode === 'edit') {
+        const spot = {
+          id: this.spot._id,
+          titleSpot: this.titleSpot,
+          theory: this.theory,
+          exploit: this.exploit,
+          type: this.select,
+          audio: this.audio
+        }
+        updateOneSpot(spot)
+        this.$emit('goModeShow')
+      }
+      if (this.mode === 'create') {
+        const spot = {
+          titleSpot: this.titleSpot,
+          theory: this.theory,
+          exploit: this.exploit,
+          type: this.select,
+          audio: this.audio
+        }
+        createSpot(spot)
+        this.$emit('goModeShow')
+      }
     },
     reset () {
       this.$refs.form.reset()
@@ -101,10 +126,14 @@ export default {
       this.exploit = this.spot.exploit
       this.theory = this.spot.theory
       this.audio = this.spot.audio
+    },
+    back: function () {
+      this.$emit('goModeShow')
     }
   },
   props: {
-    spot: Object
+    spot: Object,
+    mode: String
   },
   created () {
     if (this.spot !== undefined) {

@@ -26,9 +26,11 @@
             <v-icon large color="white darken-2"> mdi-dialpad </v-icon>
           </v-btn>
         </template>
-        <v-list>
+        <v-list shaped>
           <v-list-item v-for="(item, index) in items" :key="index">
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title @click="goMain">{{
+              item.title
+            }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -40,11 +42,12 @@
 export default {
   name: 'HeaderComponent',
   data: () => ({
-    items: [
-      { title: 'Profile' },
-      { title: 'Logout' },
-      { title: 'Grabar Audio' }
-    ]
-  })
+    items: [{ title: 'Home' }, { title: 'Logout' }, { title: 'Grabar Audio' }]
+  }),
+  methods: {
+    goMain: function () {
+      this.$router.push({ name: 'main' })
+    }
+  }
 }
 </script>

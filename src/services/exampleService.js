@@ -13,6 +13,34 @@ async function getAllExamples(data) {
     return response.data
 }
 
+async function updateOneExample(data) {
+    const response = await apiClient.patch('example/' + data.id, data, {
+        headers: {
+            'token': localStorage.token
+        }
+    })
+}
+
+async function createExample(data) {
+    console.log(data)
+    const response = await apiClient.post('example/', data, {
+        headers: {
+            'token': localStorage.token
+        }
+    })
+}
+
+async function deleteExample(data) {
+    const response = await apiClient.patch('example/delete/' + data.flopId, { spot: data.spotId }, {
+        headers: {
+            'token': localStorage.token
+        }
+    })
+}
+
 export {
-    getAllExamples
+    getAllExamples,
+    updateOneExample,
+    createExample,
+    deleteExample
 }

@@ -1,5 +1,5 @@
 <template>
-  <v-btn color="error" dark large>
+  <v-btn @click="deleteOne" color="error" dark large>
     Borrar <v-icon dark right> mdi-delete </v-icon></v-btn
   >
 </template>
@@ -7,7 +7,12 @@
 export default {
   name: 'ButtonDeleteComponent',
 
-  data: () => ({})
+  data: () => ({}),
+  methods: {
+    deleteOne: function () {
+      this.$emit('delOne')
+    }
+  }
 }
 </script>
 <style scoped>

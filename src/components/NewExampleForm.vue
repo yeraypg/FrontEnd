@@ -62,11 +62,14 @@
         </v-btn>
 
         <v-btn color="error" class="mr-4" @click="reset"> Resetear Spot </v-btn>
+        <v-btn color="primary" class="mr-4" @click="back"> Cancel </v-btn>
       </v-form>
     </v-card>
   </v-container>
 </template>
 <script>
+import { nextTick } from 'vue'
+import { updateOneExample, createExample } from '../services/exampleService'
 export default {
   name: 'NewExampleForm',
   data: () => ({
@@ -92,10 +95,53 @@ export default {
 
   methods: {
     validate () {
-      this.$refs.form.validate()
+      if (this.mode === 'edit') {
+        const flop = {
+          id: this.example._id,
+          spotId: this.example.spotId,
+          flopId: this.example.flopId,
+          text: this.text,
+          audio: this.audio,
+          imageBoard: this.imageBoard,
+          imageHand: this.imageHand
+        }
+        updateOneExample(flop)
+        this.$emit('goModeShow')
+      }
+      if (this.mode === 'create') {
+        const spot = {
+          spotId: this.sendData.spotId,
+          flopId: this.sendData.flopId,
+          text: this.text,
+          audio: this.audio,
+          imageBoard: this.imageBoard,
+          imageHand: this.imageHand
+        }
+        createExample(spot)
+        nextTick(this.$emit('goModeShow'))
+      }
     },
     reset () {
       this.$refs.form.reset()
+    },
+    back () {
+      this.$emit('goModeShow')
+    },
+    fillForm: function () {
+      this.text = this.example.text
+      this.imageBoard = this.example.imageBoard
+      this.imageHand = this.example.imageHand
+      this.audio = this.example.audio
+    }
+  },
+  props: {
+    example: Object,
+    mode: String,
+    sendData: Object
+  },
+  created () {
+    if (this.example !== undefined) {
+      this.fillForm()
     }
   }
 }

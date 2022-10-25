@@ -1,7 +1,6 @@
 <template>
   <v-card class="mr-auto my-auto" width="95%" height="100%">
-    <v-card-text>{{ flopData.theory }}</v-card-text>
-    <v-card-text>{{ flopData.exploit }}</v-card-text>
+    <v-card-text>{{ text }}</v-card-text>
   </v-card>
 </template>
 
@@ -9,7 +8,7 @@
 export default {
   name: 'FlopCardtext',
   props: {
-    flopData: Object
+    text: String
   }
 }
 </script>

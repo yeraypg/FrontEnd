@@ -1,22 +1,31 @@
 <template>
   <v-container>
-    <v-row>
-      <v-spacer></v-spacer>
-      <v-col cols="4">
-        <SelectTypeSpotComponent @changeSelectFilter="chageSelectFilter" />
-      </v-col>
-      <v-spacer></v-spacer>
-    </v-row>
-    <v-row>
-      <v-container class="cardRows">
-        <div v-for="spot in getFilteredSpots" :key="spot.id">
-          <SpotCardComponent @sendOneSpot="clickCard" :spot="spot" />
-        </div>
+    <transition name="fade">
+      <v-container v-if="editMode == 'show'">
+        <v-row>
+          <v-spacer></v-spacer>
+          <v-col cols="4">
+            <SelectTypeSpotComponent @changeSelectFilter="chageSelectFilter" />
+          </v-col>
+          <v-spacer></v-spacer>
+        </v-row>
+        <v-row>
+          <v-container class="cardRows">
+            <div v-for="spot in getFilteredSpots" :key="spot.id">
+              <SpotCardComponent @sendOneSpot="clickCard" :spot="spot" />
+            </div>
+          </v-container>
+        </v-row>
+        <v-row class="buttons">
+          <button-add @addNew="modeAdd" />
+        </v-row>
       </v-container>
-    </v-row>
-    <v-row class="buttons">
-      <button-add @addNew="goAddSpot" />
-    </v-row>
+    </transition>
+    <transition name="fade">
+      <v-container v-if="editMode == 'add'">
+        <SpotForm :mode="mode" @goModeShow="modeShow" />
+      </v-container>
+    </transition>
   </v-container>
 </template>
 
@@ -25,23 +34,31 @@ import SpotCardComponent from '../components/SpotCardComponent.vue'
 import { getAllSpots } from '../services/spotService'
 import SelectTypeSpotComponent from '../components/SelectTypeSpotComponent.vue'
 import ButtonAdd from '../components/ButtonAddComponent.vue'
+import SpotForm from '../components/NewSpotForm.vue'
 
 export default {
   name: 'MainView',
   data () {
     return {
       userSpots: [],
-      typeSelect: 'SRP'
+      typeSelect: 'SRP',
+      mode: '',
+      editMode: 'show'
     }
   },
   components: {
     SpotCardComponent,
     SelectTypeSpotComponent,
-    ButtonAdd
+    ButtonAdd,
+    SpotForm
   },
   methods: {
-    goAddSpot: function () {
-      this.$router.push({ name: 'newSpot' })
+    modeAdd: function () {
+      this.editMode = 'add'
+      this.mode = 'create'
+    },
+    modeShow: function () {
+      this.editMode = 'show'
     },
     getAllSpots: async function () {
       const data = await getAllSpots(localStorage.userId)
@@ -76,5 +93,15 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-content: center;
+}
+.fade-enter-active,
+.fade-leave-active {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.fade-enter,
+.fade-leave {
+  opacity: 0;
 }
 </style>

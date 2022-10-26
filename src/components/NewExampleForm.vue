@@ -97,7 +97,7 @@ export default {
   }),
 
   methods: {
-    validate () {
+    async validate () {
       if (this.mode === 'edit') {
         const flop = {
           id: this.example._id,
@@ -108,7 +108,7 @@ export default {
           imageBoard: this.imageBoard,
           imageHand: this.imageHand
         }
-        updateOneExample(flop)
+        await updateOneExample(flop)
         this.$emit('goModeShow')
       }
       if (this.mode === 'create') {
@@ -120,7 +120,7 @@ export default {
           imageBoard: this.imageBoard,
           imageHand: this.imageHand
         }
-        createExample(spot)
+        await createExample(spot)
         nextTick(this.$emit('goModeShow'))
       }
     },

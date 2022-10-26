@@ -2,6 +2,9 @@
   <v-container>
     <transition name="fade">
       <v-container v-if="editMode == 'show'">
+        <v-row justify="center">
+          <h1>Ejemplos</h1>
+        </v-row>
         <v-row>
           <ExampleSliderComponent
             :examplesData="examplesData"

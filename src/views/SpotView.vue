@@ -104,7 +104,8 @@ export default {
       this.editMode = 'edit'
       this.mode = 'edit'
     },
-    modeShow: function () {
+    modeShow: async function () {
+      await this.getOneSpot()
       this.editMode = 'show'
     },
     delSpot: async function () {

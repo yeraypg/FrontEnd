@@ -107,7 +107,7 @@ export default {
   }),
 
   methods: {
-    validate () {
+    async validate () {
       if (this.mode === 'edit') {
         const flop = {
           spot: this.spotId,
@@ -118,7 +118,7 @@ export default {
           audio: this.audio,
           image: this.image
         }
-        updateOneFlop(flop)
+        await updateOneFlop(flop)
         this.$emit('goModeShow')
       }
       if (this.mode === 'create') {
@@ -130,7 +130,7 @@ export default {
           audio: this.audio,
           image: this.image
         }
-        createFlop(spot)
+        await createFlop(spot)
         this.$emit('goModeShow')
       }
     },

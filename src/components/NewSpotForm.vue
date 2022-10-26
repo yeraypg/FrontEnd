@@ -95,7 +95,7 @@ export default {
   }),
 
   methods: {
-    validate () {
+    async validate () {
       if (this.mode === 'edit') {
         const spot = {
           id: this.spot._id,
@@ -105,7 +105,7 @@ export default {
           type: this.select,
           audio: this.audio
         }
-        updateOneSpot(spot)
+        await updateOneSpot(spot)
         this.$emit('goModeShow')
       }
       if (this.mode === 'create') {
@@ -116,8 +116,7 @@ export default {
           type: this.select,
           audio: this.audio
         }
-        console.log(spot)
-        createSpot(spot)
+        await createSpot(spot)
         this.$emit('goModeShow')
       }
     },

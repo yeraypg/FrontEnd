@@ -106,7 +106,8 @@ export default {
       this.editMode = 'add'
       this.mode = 'create'
     },
-    modeShow: function () {
+    modeShow: async function () {
+      await this.getOneFlop()
       this.editMode = 'show'
     },
     modeEdit: function () {

@@ -59,7 +59,8 @@ export default {
       this.editMode = 'add'
       this.mode = 'create'
     },
-    modeShow: function () {
+    modeShow: async function () {
+      await this.getAllSpots()
       this.editMode = 'show'
     },
     getAllSpots: async function () {

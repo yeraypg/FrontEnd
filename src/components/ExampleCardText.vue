@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mr-auto my-auto" width="95%" height="100%">
+  <v-card class="mr-auto my-auto" width="100%" height="100%" elevator="10">
     <v-card-text>{{ text }}</v-card-text>
   </v-card>
 </template>
@@ -14,4 +14,7 @@ export default {
 </script>
 
 <style scoped>
+.v-card {
+  overflow: auto;
+}
 </style>

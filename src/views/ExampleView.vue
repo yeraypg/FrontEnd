@@ -13,11 +13,11 @@
           <ExampleCardText :text="example.text" />
         </v-row>
         <v-row>
-          <v-col cols="8"><ButtonAdd @addNew="modeAdd" /></v-col>
-          <v-col cols="4"
+          <v-col cols="6" class="bAdd"><ButtonAdd @addNew="modeAdd" /></v-col>
+          <v-col cols="6" class="buttons"
             ><ButtonVolver @getBack="goFlop" />
-            <ButtonModify @modify="modeEdit"
-          /></v-col>
+            <ButtonModify @modify="modeEdit"/>
+            </v-col>
         </v-row>
       </v-container>
     </transition>
@@ -114,5 +114,15 @@ export default {
 .fade-enter,
 .fade-leave {
   opacity: 0;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+.bAdd {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
 }
 </style>

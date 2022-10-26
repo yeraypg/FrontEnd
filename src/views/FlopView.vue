@@ -3,7 +3,7 @@
     <transition name="fade">
       <v-container v-if="editMode == 'show'">
         <h1>{{ flopData.titleFlop }}</h1>
-        <v-row>
+        <v-row heigh="60vh">
           <v-spacer></v-spacer>
           <v-col cols="6">
             <FlopCardText :flopData="flopData" />
@@ -20,8 +20,8 @@
             </v-btn>
           </v-col>
           <v-spacer></v-spacer>
-          <v-col cols="4"> <ButtonAdd @addNew="modeAdd" /> </v-col>
-          <v-col cols="4">
+          <v-col cols="4" class="bAdd"> <ButtonAdd @addNew="modeAdd" /> </v-col>
+          <v-col cols="4" class="buttons">
             <ButtonModify @modify="modeEdit" />
             <ButtonDelete @delOne="delFlop" />
             <ButtonVolver @getBack="goSpot(sendData.spot)" />
@@ -126,9 +126,23 @@ export default {
   opacity: 1;
   transition: all 0.5s ease-in-out;
 }
-
 .fade-enter,
 .fade-leave {
   opacity: 0;
+}
+h1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.bAdd {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
 }
 </style>

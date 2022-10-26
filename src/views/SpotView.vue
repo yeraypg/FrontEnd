@@ -24,7 +24,7 @@
           </v-card></v-row
         >
         <v-row class="buttons">
-          <v-col cols="4" clas="d-flex justify-start">
+          <v-col cols="4" class="d-flex justify-start">
             <button-share />
           </v-col>
           <v-col cols="4" class="d-flex justify-center"

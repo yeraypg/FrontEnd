@@ -4,7 +4,7 @@
     justify-center
     align-center
     center-active="true"
-    max-width="80%"
+    max-width="24%"
     next-icon="chevron-right-circle"
     color="transparent"
   >

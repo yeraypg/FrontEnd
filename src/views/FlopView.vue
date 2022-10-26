@@ -2,16 +2,19 @@
   <v-container>
     <transition name="fade">
       <v-container v-if="editMode == 'show'">
-        <h1>{{ flopData.titleFlop }}</h1>
-        <v-row heigh="60vh">
-          <v-spacer></v-spacer>
+        <v-row class="justify-center">
+          <v-col>
+            <h1>FLOP</h1>
+            <h1>{{ flopData.titleFlop }}</h1>
+          </v-col>
+        </v-row>
+        <v-row height="70vh">
           <v-col cols="6">
             <FlopCardText :flopData="flopData" />
           </v-col>
           <v-col cols="6">
             <FlopCardImg :flopData="flopData" />
           </v-col>
-          <v-spacer></v-spacer>
         </v-row>
         <v-row>
           <v-col cols="4">

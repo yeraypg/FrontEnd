@@ -13,11 +13,12 @@
           <ExampleCardText :text="example.text" />
         </v-row>
         <v-row>
-          <v-col cols="6" class="bAdd"><ButtonAdd @addNew="modeAdd" /></v-col>
-          <v-col cols="6" class="buttons"
+          <v-spacer></v-spacer>
+          <v-col cols="4" class="bAdd"><ButtonAdd @addNew="modeAdd" /></v-col>
+          <v-col cols="4" class="buttons"
             ><ButtonVolver @getBack="goFlop" />
-            <ButtonModify @modify="modeEdit"/>
-            </v-col>
+            <ButtonModify @modify="modeEdit" />
+          </v-col>
         </v-row>
       </v-container>
     </transition>
@@ -123,6 +124,6 @@ export default {
 .bAdd {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: center;
 }
 </style>

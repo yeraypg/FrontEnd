@@ -10,11 +10,13 @@
           <v-spacer></v-spacer>
         </v-row>
         <v-row>
-          <v-container class="cardRows">
-            <div v-for="spot in getFilteredSpots" :key="spot.id">
-              <SpotCardComponent @sendOneSpot="clickCard" :spot="spot" />
-            </div>
-          </v-container>
+          <v-col cols="12">
+            <v-container class="cardRows">
+              <div v-for="spot in getFilteredSpots" :key="spot.id">
+                <SpotCardComponent @sendOneSpot="clickCard" :spot="spot" />
+              </div>
+            </v-container>
+          </v-col>
         </v-row>
         <v-row class="buttons">
           <button-add @addNew="modeAdd" />
@@ -83,10 +85,14 @@ export default {
 }
 </script>
 <style scoped>
+.SpotCardComponent {
+  margin: 10px;
+}
 .cardRows {
   height: 55vh;
+  width: 90%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .buttons {
   display: flex;

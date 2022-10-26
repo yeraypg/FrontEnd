@@ -4,15 +4,19 @@
     elevation="10"
     outlined
     rounded
-    width="15vw"
+    width="10vw"
     height="25vh"
   >
-    <v-card-title class="center">{{ spot.titleSpot }}</v-card-title>
-    <ul>
-      <li mx-4 v-for="flop in spot.flops" :key="flop._id">
+    <v-card-title class="justify-center font-weight-black">{{
+      spot.titleSpot
+    }}</v-card-title>
+    <v-divider></v-divider>
+    <v-card-title class="justify-center">Flops</v-card-title>
+    <v-container>
+      <div class="flops" v-for="flop in spot.flops" :key="flop._id">
         {{ flop.titleFlop }}
-      </li>
-    </ul>
+      </div>
+    </v-container>
   </v-card>
 </template>
 
@@ -37,5 +41,20 @@ export default {
 <style scoped>
 .v-card {
   overflow: auto;
+  margin: 10px;
+}
+.v-container {
+  margin-top: 5px;
+  overflow: auto;
+}
+
+.flops {
+  background-color: aliceblue;
+  text-align: center;
+  border: 1px solid black;
+  margin: 2px;
+}
+.v-card:hover {
+  background-color: rgb(233, 244, 253);
 }
 </style>

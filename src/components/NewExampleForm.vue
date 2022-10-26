@@ -29,6 +29,7 @@
         </v-textarea>
 
         <v-file-input
+          disabled
           :rules="imgRules"
           accept="image/png, image/jpeg, image/bmp"
           placeholder="Pick an image"
@@ -37,6 +38,7 @@
         ></v-file-input>
 
         <v-file-input
+          disabled
           :rules="imgRules"
           accept="image/png, image/jpeg, image/bmp"
           placeholder="Pick an image"
@@ -45,6 +47,7 @@
         ></v-file-input>
 
         <v-file-input
+          disabled
           :rules="audRules"
           accept="audio/ogg, audio/mpeg"
           placeholder="Pick an audio"

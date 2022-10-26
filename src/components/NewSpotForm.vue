@@ -23,7 +23,7 @@
           full-width
           no-resize
           prepend-icon="mdi-comment"
-          height="5vh"
+          height="20vh"
           label="Solución teórica"
           v-model="theory"
           color="teal"
@@ -36,7 +36,7 @@
           full-width
           no-resize
           prepend-icon="mdi-comment"
-          height="5vh"
+          height="20vh"
           v-model="exploit"
           color="teal"
         >

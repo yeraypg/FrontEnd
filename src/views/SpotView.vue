@@ -3,7 +3,7 @@
     <transition name="fade">
       <v-container v-if="editMode == 'show'">
         <v-row>
-          <v-col cols="2">
+          <v-col cols="2" clas="d-flex justify-start">
             <v-card-title>Spot: {{ spotData.titleSpot }}</v-card-title>
           </v-col>
           <v-col cols="8" align-self="center"
@@ -11,7 +11,7 @@
               :flops="spotData.flops"
               @sendOneflop="clickFlop"
           /></v-col>
-          <v-col cols="2"
+          <v-col cols="2" class="d-flex justify-end"
             ><v-card-title>Type: {{ spotData.type }}</v-card-title>
           </v-col>
         </v-row>
@@ -24,11 +24,13 @@
           </v-card></v-row
         >
         <v-row class="buttons">
-          <v-spacer></v-spacer>
-          <v-col cols="2" class="d-flex justify-center"
+          <v-col cols="4" clas="d-flex justify-start">
+            <button-share />
+          </v-col>
+          <v-col cols="4" class="d-flex justify-center"
             ><ButtonAdd @addNew="modeAdd"
           /></v-col>
-          <v-col cols="5" class="d-flex justify-end"
+          <v-col cols="4" class="d-flex justify-end"
             ><ButtonModify @modify="modeEdit" />
             <ButtonDelete @delOne="delSpot" />
             <ButtonVolver @getBack="goMain"
@@ -58,6 +60,7 @@ import ButtonAdd from '../components/ButtonAddComponent.vue'
 import ButtonVolver from '../components/ButtonVolverComponent.vue'
 import ButtonModify from '../components/ButtonModifyComponent.vue'
 import ButtonDelete from '../components/ButtonDeleteComponent.vue'
+import ButtonShare from '../components/ButtonShareComponent.vue'
 import FlopForm from '../components/NewFlopForm.vue'
 import SpotForm from '../components/NewSpotForm.vue'
 
@@ -76,6 +79,7 @@ export default {
     ButtonVolver,
     ButtonModify,
     ButtonDelete,
+    ButtonShare,
     FlopForm,
     SpotForm
   },

@@ -5,7 +5,7 @@
     outlined
     rounded
     width="10vw"
-    height="25vh"
+    height="30vh"
   >
     <v-card-title class="justify-center font-weight-black">{{
       spot.titleSpot
